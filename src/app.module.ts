@@ -9,6 +9,7 @@ import { Todo } from './modules/todo/entities/todo.entity';
 import { AnimeModule } from './modules/anime/anime.module';
 import { CategoryModule } from './modules/category/category.module';
 import { LobbyModule } from './modules/lobby/lobby.module';
+import { CommentModule } from './modules/comment/comment.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { LobbyModule } from './modules/lobby/lobby.module';
     AnimeModule,
     CategoryModule,
     LobbyModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
