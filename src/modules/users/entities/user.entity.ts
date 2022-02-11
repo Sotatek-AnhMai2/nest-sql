@@ -1,5 +1,12 @@
+import { Lobby } from 'src/modules/lobby/entities/lobby.entity';
 import { Todo } from 'src/modules/todo/entities/todo.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -16,4 +23,7 @@ export class User {
 
   @OneToMany(() => Todo, (todo) => todo.user, { eager: true })
   todoList: Todo[];
+
+  @ManyToMany(() => Lobby, (lobby) => lobby.users)
+  lobbies: Lobby[];
 }

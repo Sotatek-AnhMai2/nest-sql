@@ -1,5 +1,11 @@
 import { Category } from 'src/modules/category/entities/category.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ANIME_DEFAULT_CONTENT, ANIME_ENDING } from '../anime.constant';
 
 @Entity()
@@ -19,6 +25,7 @@ export class Anime {
   @Column({ default: ANIME_ENDING.HAPPY })
   ending: ANIME_ENDING;
 
-  @ManyToMany(() => Category, { eager: true })
+  @ManyToMany(() => Category, (category) => category.animeList, { eager: true })
+  @JoinTable()
   categories: Category[];
 }

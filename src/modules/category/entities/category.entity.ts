@@ -9,6 +9,6 @@ export class Category {
   @Column()
   name: string;
 
-  @ManyToMany(() => Anime, { onDelete: 'SET NULL' })
+  @ManyToMany(() => Anime, (anime) => anime.categories)
   animeList: Anime[];
 }
