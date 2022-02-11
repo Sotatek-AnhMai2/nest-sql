@@ -32,4 +32,8 @@ export class UsersService {
 
     return this.usersRepository.updateUser(id, updateUserDto);
   }
+
+  deleteUser(user: User) {
+    return this.usersRepository.deleteUser(user);
+  }
 }

@@ -1,9 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpException,
   HttpStatus,
+  NotFoundException,
   // NotFoundException,
   Param,
   ParseIntPipe,
@@ -66,15 +68,17 @@ export class UsersController {
   ) {
     const user = await this.getUserById(id);
     if (!user) {
-      // throw new NotFoundException('User does not exist');
-      throw new HttpException(
-        {
-          status: HttpStatus.NOT_FOUND,
-          error: 'User does not exist',
-        },
-        HttpStatus.NOT_FOUND,
-      );
+      throw new NotFoundException('User does not exist');
     }
     return this.userService.updateUser(id, updateUserDto);
+  }
+
+  @Delete(':id')
+  async deleteUser(@Param('id', ParseIntPipe) id: number) {
+    const user = await this.getUserById(id);
+    if (!user) {
+      throw new NotFoundException('User does not exist');
+    }
+    return this.userService.deleteUser(user);
   }
 }

@@ -25,4 +25,8 @@ export class UsersRepository extends Repository<User> {
   updateUser(id: number, updateUserDto: UpdateUserDto) {
     return this.update({ id }, updateUserDto);
   }
+
+  deleteUser(user: User) {
+    return this.remove(user);
+  }
 }

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsAlphanumeric, MaxLength, MinLength } from 'class-validator';
-import { hashPassword } from 'src/helpers/hash';
+import { hashPassword } from 'src/commons/helpers/hash';
 import { User } from '../entities/user.entity';
 
 export class CreateUserDto {
