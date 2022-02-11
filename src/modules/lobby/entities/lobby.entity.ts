@@ -20,6 +20,16 @@ export class Lobby {
   content: string;
 
   @ManyToMany(() => User, (user) => user.lobbies)
-  @JoinTable()
+  @JoinTable({
+    name: 'lobby_user',
+    joinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'lobby_id',
+      referencedColumnName: 'id',
+    },
+  })
   users: User[];
 }

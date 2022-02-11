@@ -26,6 +26,16 @@ export class Anime {
   ending: ANIME_ENDING;
 
   @ManyToMany(() => Category, (category) => category.animeList, { eager: true })
-  @JoinTable()
+  @JoinTable({
+    name: 'anime_category',
+    joinColumn: {
+      name: 'anime_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'category_id',
+      referencedColumnName: 'id',
+    },
+  })
   categories: Category[];
 }
