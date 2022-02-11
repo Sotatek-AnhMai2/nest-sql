@@ -6,6 +6,7 @@ import { User } from './modules/users/entities/user.entity';
 import { UsersModule } from './modules/users/users.module';
 import { TodoModule } from './modules/todo/todo.module';
 import { Todo } from './modules/todo/entities/todo.entity';
+import { AnimeModule } from './modules/anime/anime.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { Todo } from './modules/todo/entities/todo.entity';
     UsersModule,
     TypeOrmModule.forFeature([User, Todo]),
     TodoModule,
+    AnimeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

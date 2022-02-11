@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { TODO_STATUS } from '../todo.enum';
+import { TODO_STATUS } from '../todo.constant';
 
 @Entity()
 export class Todo {
