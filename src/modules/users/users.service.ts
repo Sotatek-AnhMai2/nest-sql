@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UsersRepository } from './users.repository';
+import { removeExcessPropertyWhenUpdate } from '../../commons/helpers/refine-data';
 
 @Injectable()
 export class UsersService {
@@ -24,13 +25,10 @@ export class UsersService {
   }
 
   updateUser(id: number, updateUserDto: UpdateUserDto) {
-    for (const key in updateUserDto) {
-      if (!updateUserDto.hasOwnProperty(key)) {
-        delete updateUserDto[key];
-      }
-    }
-
-    return this.usersRepository.updateUser(id, updateUserDto);
+    return this.usersRepository.updateUser(
+      id,
+      removeExcessPropertyWhenUpdate(updateUserDto),
+    );
   }
 
   deleteUser(user: User) {

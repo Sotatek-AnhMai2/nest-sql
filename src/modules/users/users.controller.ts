@@ -22,6 +22,7 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { USER_DOES_NOT_EXIST } from './users.constant';
 import { UsersService } from './users.service';
 
 @ApiTags('users')
@@ -43,11 +44,11 @@ export class UsersController {
     const user = this.userService.getUserById(id);
 
     if (!user) {
-      // throw new NotFoundException('User does not exist');
+      // throw new NotFoundException(USER_DOES_NOT_EXIST);
       throw new HttpException(
         {
           status: HttpStatus.NOT_FOUND,
-          error: 'User does not exist',
+          error: USER_DOES_NOT_EXIST,
         },
         HttpStatus.NOT_FOUND,
       );
@@ -68,7 +69,7 @@ export class UsersController {
   ) {
     const user = await this.getUserById(id);
     if (!user) {
-      throw new NotFoundException('User does not exist');
+      throw new NotFoundException(USER_DOES_NOT_EXIST);
     }
     return this.userService.updateUser(id, updateUserDto);
   }
@@ -77,7 +78,7 @@ export class UsersController {
   async deleteUser(@Param('id', ParseIntPipe) id: number) {
     const user = await this.getUserById(id);
     if (!user) {
-      throw new NotFoundException('User does not exist');
+      throw new NotFoundException(USER_DOES_NOT_EXIST);
     }
     return this.userService.deleteUser(user);
   }
